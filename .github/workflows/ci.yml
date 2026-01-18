@@ -14,10 +14,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # ---------- Backend ----------
-      - name: Build backend image
-        run: docker build -t crud-backend ./Backend
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      # ---------- Frontend ----------
-      - name: Build frontend image
-        run: docker build -t crud-frontend ./Frontend
+      - name: Build Backend Image
+        run: |
+          docker build -t cicd-backend ./Backend
+
+      - name: Build Frontend Image
+        run: |
+          docker build -t cicd-frontend ./Frontend
+
+      - name: Validate Docker Compose
+        run: |
+          docker compose config
