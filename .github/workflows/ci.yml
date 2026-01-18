@@ -19,11 +19,11 @@ jobs:
 
       - name: Build Backend Image
         run: |
-          docker build -t cicd-backend ./Backend
+          docker build -t cicd-backend -f Backend/Dockerfile Backend
 
       - name: Build Frontend Image
         run: |
-          docker build -t cicd-frontend ./Frontend
+          docker build -t cicd-frontend -f Frontend/Dockerfile Frontend
 
       - name: Validate Docker Compose
         run: |
