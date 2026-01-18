@@ -1,0 +1,33 @@
+<h2>User CRUD</h2>
+
+<!-- FORM -->
+<div class="form">
+  <input [(ngModel)]="name" placeholder="Name">
+  <input [(ngModel)]="email" placeholder="Email">
+
+  <button (click)="submit()">
+    {{ isEdit ? 'Update' : 'Create' }}
+  </button>
+
+  <button *ngIf="isEdit" (click)="resetForm()">Cancel</button>
+</div>
+
+<hr>
+
+<!-- LIST -->
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Actions</th>
+  </tr>
+
+  <tr *ngFor="let u of users">
+    <td>{{ u.name }}</td>
+    <td>{{ u.email }}</td>
+    <td>
+      <button (click)="edit(u)">Edit</button>
+      <button (click)="delete(u.email)">Delete</button>
+    </td>
+  </tr>
+</table>
