@@ -1,7 +1,7 @@
 # 1 Base image 
 FROM python:3.12-slim
 
-# 2  now selecr working dirct 
+# 2  now select working directory 
 WORKDIR /app 
 
 # 3 install system dependencies 
@@ -16,7 +16,7 @@ COPY requirements.txt .
 # 5 Install python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 6 copr appplication code
+# 6 copy appplication code
 COPY . .
 
 #  7 expose fastapi post
