@@ -11,7 +11,7 @@ router = APIRouter(prefix="/user" , tags= ["User Router"])
 
 @router.get("/")
 def health() :
-    return {"Message" : "All OKK 200 "}
+    return {"Message" : "Status OK 200 "}
 
 
 @router.get("/all")
@@ -57,11 +57,8 @@ def update_by_email(email :str , user : UserBase , db : Session = Depends(get_db
     db_user = db.query(UserModel).filter(UserModel.email == email).first()
     if not db_user :
         raise HTTPException(status_code= 404 , detail="Usr not found")
-    
-
     db_user.name = user.name 
     db_user.email = user.email
-
     db.commit()
     db.refresh(db_user)
     return db_user
@@ -72,14 +69,12 @@ def update_user(email : str , user : UserUpdate , db : Session = Depends(get_db)
     db_user = db.query(UserModel).filter(UserModel.email == email).first()
     if not db_user :
         raise HTTPException(status_code=404 , detail="User not found")
-    
+
     update_data = user.dict(exclude_unset=True)
     for key , value in update_data.items() :
         setattr(db_user , key , value)
-
     db.commit()  
     db.refresh(db_user)
-
     return db_user
 
 
