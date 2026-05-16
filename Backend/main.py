@@ -1,6 +1,8 @@
 from fastapi import FastAPI
-from database import Base , engine
-from routes import  router as user_router 
+from utils.database import Base , engine
+from routes.routes import  router as user_router
+
+
 app =  FastAPI(title="|| User Crud And CICD ||")
 
 from fastapi.middleware.cors import CORSMiddleware
